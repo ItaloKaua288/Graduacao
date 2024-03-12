@@ -1,18 +1,19 @@
 package model;
 
-public class CupomDesconto {
+public class CupomDesconto implements ValidadorCupomInterface{
     private double valor;
     private String codigo;
 
-    public CupomDesconto(Cliente cliente) {
+    public CupomDesconto(Cliente cliente){
         cliente.setCupomDesconto(this);
     }
 
     public CupomDesconto(String codigo, Cliente cliente) throws ClienteException, CupomException{
-        if (!codigo.equals(GerenciadorCupom.CODIGO_CUPOM))
+        if (!ValidadorCupomInterface.validarCupom(codigo))
             throw new CupomException();
         if(!BaseDados.isCliente(cliente))
             throw new ClienteException();
+            
         this.codigo = codigo;
         cliente.setCupomDesconto(this);
     }

@@ -5,6 +5,8 @@ public class GerenciadorCupom {
     private int valorCupomAtual;
     public final static String CODIGO_CUPOM = "MPOOSTOREOFF";
 
+    public GerenciadorCupom() {}
+
     public boolean isOfertaCupom() {
         return ofertaCupom;
     }

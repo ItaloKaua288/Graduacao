@@ -11,9 +11,21 @@ public class BaseDados {
 	}
 	
 	private static void inicializarBase(){
-			pessoas.add(new Cliente("Maria Silva", "833.553.163-34", "maria@gmail.com"));
-			pessoas.add(new Cliente("jo�o Santos", "111.111.111-11", "joao@gmail.com"));
-			pessoas.add(new Cliente("Godofredo Alves", "358.251.830-27", "godofredo@gmail.com"));
+			try {
+				pessoas.add(new Cliente("Maria Silva", "833.553.163-34", "maria@gmail.com"));
+			} catch (CPFException e) {
+				e.printStackTrace();
+			}
+			try {
+				pessoas.add(new Cliente("jo�o Santos", "111.111.111-11", "joao@gmail.com"));
+			} catch (CPFException e) {
+				e.printStackTrace();
+			}
+			try {
+				pessoas.add(new Cliente("Godofredo Alves", "358.251.830-27", "godofredo@gmail.com"));
+			} catch (CPFException e) {
+				e.printStackTrace();
+			}
 	}
 	
 	private static Pessoa buscarPessoa(String cpf){ 

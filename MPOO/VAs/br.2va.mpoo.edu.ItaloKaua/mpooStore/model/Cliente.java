@@ -4,7 +4,7 @@ public class Cliente extends Pessoa{
 	private String email;
 	private CupomDesconto cupomDesconto;
 	
-	public Cliente(String nome, String cpf, String email) {
+	public Cliente(String nome, String cpf, String email) throws CPFException {
 		super(nome, cpf);
 		this.email = email;
 		new CupomDesconto(this);

@@ -1,12 +1,15 @@
 package model;
 
-public class Pessoa{
+public class Pessoa implements ValidadorCPFInterface{
 	private String nome;
 	private String cpf;
 	
-	public Pessoa(String nome, String cpf){
+	public Pessoa(String nome, String cpf) throws CPFException{
 		this.nome = nome;
-		this.cpf = cpf;
+		if (validarCPF(cpf))
+			this.cpf = cpf;
+		else
+			throw new CPFException();
 	}
 
 	public String getNome() {
