@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+
 import java.awt.FlowLayout;
 
 public class AberturaView extends JFrame{

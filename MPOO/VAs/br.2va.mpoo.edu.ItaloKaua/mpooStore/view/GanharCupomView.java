@@ -50,8 +50,6 @@ public class GanharCupomView extends JFrame{
         add(camposPanel, BorderLayout.CENTER);
         add(confirmarButton, BorderLayout.EAST);
         add(brindePanel, BorderLayout.SOUTH);
-
-        setVisible(true);
     }
 
     public JTextField getNomeField() {

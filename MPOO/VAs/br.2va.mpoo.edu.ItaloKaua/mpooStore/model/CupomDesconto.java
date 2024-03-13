@@ -1,8 +1,9 @@
 package model;
 
 public class CupomDesconto implements ValidadorCupomInterface{
-    private double valor;
+    private int valor;
     private String codigo;
+    private GerenciadorCupom gerenciadorCupom;
 
     public CupomDesconto(Cliente cliente){
         cliente.setCupomDesconto(this);
@@ -15,14 +16,17 @@ public class CupomDesconto implements ValidadorCupomInterface{
             throw new ClienteException();
             
         this.codigo = codigo;
+        this.gerenciadorCupom = new GerenciadorCupom();
+        this.valor = gerenciadorCupom.getValorCupomAtual();
         cliente.setCupomDesconto(this);
+        //new TempoOferta(this).start();
     }
 
-    public double getValor() {
+    public int getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 
@@ -33,4 +37,9 @@ public class CupomDesconto implements ValidadorCupomInterface{
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
+    public GerenciadorCupom getGerenciadorCupom() {
+        return gerenciadorCupom;
+    }
+    
 }
