@@ -2,8 +2,6 @@ package entidade;
 
 import java.util.Calendar;
 
-import util.Verificador;
-
 public class Produto {
     public String codBarras;
     private String nome;
