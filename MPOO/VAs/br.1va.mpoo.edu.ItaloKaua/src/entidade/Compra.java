@@ -3,6 +3,7 @@ package entidade;
 import java.util.ArrayList;
 
 import base.BaseDados;
+import gui.Mensagem;
 
 public class Compra {
     public int id;
@@ -20,7 +21,12 @@ public class Compra {
             return false;
 
         valorTotal += produto.preco;
-        BaseDados.removerProduto(produto);
+        Produto produtoTemp = BaseDados.buscarProduto(produto.codBarras);
+        if (produtoTemp.getEstoque().getQuantidade() > 0)
+            produtoTemp.getEstoque().setQuantidade(produtoTemp.getEstoque().getQuantidade()-1);
+        else {
+            Mensagem.exibirMensagem(Mensagem.PRODUTO_INSUFICIENTE);
+        }
         return produtos.add(BaseDados.buscarProduto(produto.codBarras));
     }
 

@@ -43,6 +43,9 @@ public class Gerente extends Funcionario{
         if (compra == null)
             return;
 
+        if (desconto > 10)
+            Mensagem.exibirMensagem(Mensagem.DESCONTO_SUPERIOR);
+
         if (compra.getValorTotal() < 100.0)
             Mensagem.exibirMensagem(Mensagem.DESCONTO_VALOR_MINIMO);
 

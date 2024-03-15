@@ -3,8 +3,10 @@ package base;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import entidade.Estoque;
 import entidade.Produto;
 import gui.Mensagem;
+import util.Verificador;
 
 public class BaseDados {
     private static ArrayList<Produto> produtos;
@@ -28,6 +30,10 @@ public class BaseDados {
 
         validade.set(2023, Calendar.DECEMBER, 21);
         addProduto(new Produto("PROD004", "laranja mimosa", 0.5, validade, true));
+        
+        for (int i = 0; i < produtos.size(); i++) {
+            produtos.get(i).getEstoque().setQuantidade(100);
+        }
     }
 
     public static Produto buscarProduto(String codBarras) {
@@ -52,16 +58,18 @@ public class BaseDados {
     }
 
     public static boolean addProduto(Produto produto) {
-        if (produto == null)
-            return false;
-        
-        if (isProduto(produto.codBarras)) {
+        if (produto == null || Verificador.isVencido(produto)) {
             Mensagem.exibirMensagem(Mensagem.PRODUTO_ERRO);
             return false;
         }
         
+        if (isProduto(produto.codBarras)) {
+            Estoque estoqueTemp = BaseDados.buscarProduto(produto.codBarras).getEstoque();
+            estoqueTemp.setQuantidade(estoqueTemp.getQuantidade() + produto.getEstoque().getQuantidade());
+        } else
+            produtos.add(produto);
         Mensagem.exibirMensagem(Mensagem.PRODUTO_SUCESSO);
-        return produtos.add(produto);
+        return true;
     }
 
     public static boolean removerProduto(Produto produto) {
@@ -69,10 +77,7 @@ public class BaseDados {
             return false;
         
         if (isProduto(produto.codBarras)) {
-            //return produtos.remove(buscarProduto(produto.codBarras));
-            Produto produtoTemp = buscarProduto(produto.codBarras);
-            produtoTemp.getEstoque().setQuantidade((produtoTemp.getEstoque().getQuantidade()-1));
-            return true;
+            return produtos.remove(buscarProduto(produto.codBarras));
         }
         return false;
     }

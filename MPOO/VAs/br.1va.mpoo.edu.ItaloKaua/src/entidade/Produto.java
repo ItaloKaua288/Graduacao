@@ -2,6 +2,8 @@ package entidade;
 
 import java.util.Calendar;
 
+import util.Verificador;
+
 public class Produto {
     public String codBarras;
     private String nome;
@@ -46,6 +48,10 @@ public class Produto {
 
     public void setEstoque(Estoque estoque) {
         this.estoque = estoque;
+    }
+
+    public Calendar getValidade() {
+        return validade;
     }
     
 }
