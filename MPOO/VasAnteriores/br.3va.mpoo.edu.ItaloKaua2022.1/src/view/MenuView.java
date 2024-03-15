@@ -29,6 +29,7 @@ public class MenuView extends JFrame{
                     UIManager.setLookAndFeel(currentLook.getClassName());
         } catch (Exception e) {
             e.printStackTrace();
+            MensagemView.exibirErroNimbus();
         }
 
         logoLabel = new JLabel(new ImageIcon("img//logo.png"));
