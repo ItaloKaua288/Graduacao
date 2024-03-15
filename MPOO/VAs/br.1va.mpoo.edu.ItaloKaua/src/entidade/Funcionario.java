@@ -9,6 +9,7 @@ public abstract class Funcionario {
     public Funcionario(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
+        this.salario = SALARIO_MINIMO;
     }
 
     public abstract void calcularSalario();
@@ -28,6 +29,10 @@ public abstract class Funcionario {
 
     public double getSalario() {
         return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
     }
     
 }

@@ -1,6 +1,7 @@
 package base;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import entidade.Produto;
 import gui.Mensagem;
@@ -14,7 +15,19 @@ public class BaseDados {
     }
 
     public static void inicializarBase() {
+        Calendar validade = Calendar.getInstance();
 
+        validade.set(2024, Calendar.DECEMBER, 31);
+        addProduto(new Produto("PROD001", "feijão da Serra", 10.0, validade, false));
+
+        validade.set(2024, Calendar.MAY, 1);
+        addProduto(new Produto("PROD002", "arroz da Serra", 5.0, validade, false));
+
+        validade.set(2023, Calendar.OCTOBER, 12);
+        addProduto(new Produto("PROD003", "biscoito formoso", 2.0, validade, false));
+
+        validade.set(2023, Calendar.DECEMBER, 21);
+        addProduto(new Produto("PROD004", "laranja mimosa", 0.5, validade, true));
     }
 
     public static Produto buscarProduto(String codBarras) {
@@ -55,8 +68,12 @@ public class BaseDados {
         if (produto == null)
             return false;
         
-        if (isProduto(produto.codBarras))
-            return produtos.remove(buscarProduto(produto.codBarras));
+        if (isProduto(produto.codBarras)) {
+            //return produtos.remove(buscarProduto(produto.codBarras));
+            Produto produtoTemp = buscarProduto(produto.codBarras);
+            produtoTemp.getEstoque().setQuantidade((produtoTemp.getEstoque().getQuantidade()-1));
+            return true;
+        }
         return false;
     }
 

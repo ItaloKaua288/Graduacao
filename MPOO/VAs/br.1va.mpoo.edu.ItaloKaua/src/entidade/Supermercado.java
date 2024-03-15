@@ -7,6 +7,12 @@ public class Supermercado {
     public static ArrayList<Funcionario> funcionarios;
     public static ArrayList<Compra> compras;
 
+    public Supermercado(String nome) {
+        this.nome = nome;
+        funcionarios = new ArrayList<Funcionario>();
+        compras = new ArrayList<Compra>();
+    }
+
     public static Funcionario buscarFuncionario(String cpf) {
         if (cpf==null || cpf.isBlank())
             return null;
