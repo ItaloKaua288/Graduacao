@@ -6,6 +6,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 public class MenuView extends JFrame{
     private JLabel logoLabel;
@@ -18,6 +21,15 @@ public class MenuView extends JFrame{
         setSize(250, 170);
         setResizable(false);
         setLayout(new FlowLayout());
+
+        try {
+            LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
+            for (LookAndFeelInfo currentLook : looks)
+                if (currentLook.getName().contains("Nimbus"))
+                    UIManager.setLookAndFeel(currentLook.getClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         logoLabel = new JLabel(new ImageIcon("img//logo.png"));
         cadastrarButton = new JButton("Cadastrar");
