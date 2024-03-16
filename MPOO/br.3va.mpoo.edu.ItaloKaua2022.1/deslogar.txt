@@ -1,0 +1,13 @@
+	private void deslogar(){
+		ArrayList<Usuario> usuariosRemover = new ArrayList<Usuario>();
+		long timeCurrentSystem;
+		for (Usuario userCurrent:usuariosLogados){
+			timeCurrentSystem=userCurrent.getLastLogin().until(LocalDateTime.now(), ChronoUnit.SECONDS);
+			if (userCurrent instanceof Usuario){
+				if (timeCurrentSystem>=userCurrent.TEMPO_LOG){
+					JOptionPane.showMessageDialog(null, "Você foi deslogado");
+				}
+			}
+		}
+		usuariosLogados.removeAll(usuariosRemover);
+	}
