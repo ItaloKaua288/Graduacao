@@ -11,6 +11,7 @@ public class Log extends Thread{
 
     public Log() {
         usuariosLogados = new ArrayList<Usuario>();
+        start();
     }
 
     private void deslogar() {
@@ -19,10 +20,16 @@ public class Log extends Thread{
 		for (Usuario userCurrent:usuariosLogados){
 			timeCurrentSystem=userCurrent.getLastLogin().until(LocalDateTime.now(), ChronoUnit.SECONDS);
 			if (userCurrent instanceof Usuario){
-				if (timeCurrentSystem>=userCurrent.TEMPO_LOG){
-                    MensagemView.exibirMensagem("Você foi deslogado");
-					//JOptionPane.showMessageDialog(null, "Você foi deslogado");
-				}
+                if (userCurrent.login.equals("admin") && userCurrent.getSenha().equals("admin"))
+                    if (timeCurrentSystem>((SuperUsuario)userCurrent).TEMPO_LOG){
+                        MensagemView.exibirMensagem("Você foi deslogado");
+                        usuariosRemover.add(userCurrent);
+                    }
+                else
+                    if (timeCurrentSystem>=userCurrent.TEMPO_LOG){
+                        MensagemView.exibirMensagem("Você foi deslogado");
+                        usuariosRemover.add(userCurrent);
+                    }
 			}
 		}
 		usuariosLogados.removeAll(usuariosRemover);
@@ -32,7 +39,6 @@ public class Log extends Thread{
         while (true) {
             try {
                 deslogar();
-                sleep(null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
