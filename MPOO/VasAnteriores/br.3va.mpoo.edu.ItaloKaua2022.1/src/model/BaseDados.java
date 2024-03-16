@@ -40,7 +40,6 @@ public class BaseDados {
 
     public static boolean adicionarPessoa(Pessoa pessoa) {
         if (isPessoa(pessoa) || pessoa == null) {
-            MensagemView.exibirMensagemErro(Mensagem.USUARIO_ERROR);
             return false;
         }
         

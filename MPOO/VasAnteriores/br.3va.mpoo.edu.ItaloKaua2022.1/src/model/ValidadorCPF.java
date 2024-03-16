@@ -6,7 +6,8 @@ public interface ValidadorCPF {
     public final String CPF_INVALIDO = "CPF informado é inválido";
 
     public default boolean validarCPF(String CPF) {
-		
+		CPF = CPF.replace(".", "").replace("-", "");
+
 		if (CPF.equals("00000000000") || CPF.equals("11111111111") ||
 				CPF.equals("22222222222") || CPF.equals("33333333333") ||
 				CPF.equals("44444444444") || CPF.equals("55555555555") ||

@@ -9,10 +9,10 @@ public class Telefone {
         pessoa.getTelefones().add(this);
     }
 
-    public Telefone(int ddi, int ddd, int numero, Pessoa pessoa) {
+    public Telefone(int ddi, int ddd, String numero, Pessoa pessoa) {
         this.ddi = ddi;
         this.ddd = ddd;
-        this.numero = numero;
+        this.numero = Integer.parseInt(numero.replace("-", ""));
         pessoa.getTelefones().add(this);
     }
 
@@ -26,6 +26,11 @@ public class Telefone {
 
     public int getNumero() {
         return numero;
+    }
+
+    @Override
+    public String toString() {
+        return "+" + ddi + " (" + ddd + ") " + numero;
     }
     
     

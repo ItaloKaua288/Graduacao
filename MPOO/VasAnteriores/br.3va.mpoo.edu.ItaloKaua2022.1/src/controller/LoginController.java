@@ -38,6 +38,11 @@ public class LoginController {
                 String login = loginView.getLoginField().getText();
                 String senha = loginView.getSenhaField().getText();
 
+                if (login.isBlank() || login.isBlank() || senha.isBlank()) {
+                    MensagemView.exibirMensagemErro("O preenchimento de todos os campos é obrigatório!");
+                    return;
+                }
+
                 if(!BaseDados.isUsuario(login, senha)) {
                     MensagemView.exibirMensagemErro(Mensagem.USUARIO_LOGIN_ERROR);
                     return;

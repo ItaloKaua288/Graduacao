@@ -8,7 +8,9 @@ public abstract class Pessoa implements ValidadorCPF{
     private String sexo;
     private ArrayList<Telefone> telefones;
 
-    public Pessoa() {}
+    public Pessoa() {
+        this.telefones = new ArrayList<Telefone>();
+    }
     
     public Pessoa(String nome, String cpf, String sexo) throws CPFException{
         this.nome = nome;
@@ -22,7 +24,7 @@ public abstract class Pessoa implements ValidadorCPF{
 
     @Override
     public String toString() {
-        return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", telefones=" + telefones.toString() + "]";
+        return "nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", telefones=" + telefones;
     }
 
     public String getNome() {
