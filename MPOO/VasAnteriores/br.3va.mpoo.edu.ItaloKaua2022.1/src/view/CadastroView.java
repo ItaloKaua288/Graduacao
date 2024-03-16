@@ -17,8 +17,8 @@ import javax.swing.text.MaskFormatter;
 
 public class CadastroView extends JFrame{
     private JLabel tituloLabel, nomeLabel, loginLabel, cpfLabel, senhaLabel, sexoLabel, telefoneLabel;
-    private JTextField nomeField, loginField, senhaField, ddiField, dddField, numeroField;
-    private JFormattedTextField cpField;
+    private JTextField nomeField, loginField, senhaField, ddiField, dddField;
+    private JFormattedTextField cpField, numeroField;
     private JButton cadastrarButton, voltarButton;
     private JRadioButton eleRadioButton, elaRadioButton;
 
@@ -68,12 +68,16 @@ public class CadastroView extends JFrame{
         telefoneLabel.setHorizontalAlignment(SwingConstants.CENTER);
         ddiField = new JTextField("ddi");
         dddField = new JTextField("ddd");
-        numeroField = new JTextField("99999-9999");
+        try {
+            numeroField = new JFormattedTextField(new MaskFormatter("#####-####"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         cadastrarButton = new JButton("Cadastrar");
         cadastrarButton.setFont(new Font("", Font.BOLD, 12));
         voltarButton = new JButton("Voltar");
-        voltarButton.setFont(new Font("", Font.BOLD, 1));
+        voltarButton.setFont(new Font("", Font.BOLD, 12));
 
         add(tituloLabel);
         add(nomeLabel);
@@ -115,10 +119,6 @@ public class CadastroView extends JFrame{
         return dddField;
     }
 
-    public JTextField getNumeroField() {
-        return numeroField;
-    }
-
     public JFormattedTextField getCpField() {
         return cpField;
     }
@@ -137,6 +137,10 @@ public class CadastroView extends JFrame{
 
     public JRadioButton getElaRadioButton() {
         return elaRadioButton;
+    }
+
+    public JFormattedTextField getNumeroField() {
+        return numeroField;
     }
     
 }

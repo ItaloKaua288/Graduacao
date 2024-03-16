@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import model.BaseDados;
 import model.CPFException;
-import model.Mensagem;
 import model.Telefone;
 import model.Usuario;
 import view.CadastroView;
@@ -46,17 +45,18 @@ public class CadastroController implements ActionListener {
             else
                 sexo = "Feminino";
             
-            int ddi, ddd, numero;
+            int ddi, ddd;
+            String numero;
             try {
                 ddi = Integer.parseInt(cadastroView.getDdiField().getText());
                 ddd = Integer.parseInt(cadastroView.getDddField().getText());
-                numero = Integer.parseInt(cadastroView.getNumeroField().getText().replace("-", ""));
+                numero = cadastroView.getNumeroField().getText().replace(" ", "");
             } catch (NumberFormatException e1) {
                 e1.printStackTrace();
                 return;
             }
 
-            if (nome.isBlank() || login.isBlank() || cpf.isBlank() || senha.isBlank()) {
+            if (nome.isBlank() || login.isBlank() || cpf.isBlank() || numero.isBlank()) {
                 MensagemView.exibirMensagemErro("O preenchimento de todos os campos é obrigatório!");
                 return;
             }
@@ -75,11 +75,7 @@ public class CadastroController implements ActionListener {
                     e1.printStackTrace();
                 }
             new Telefone(ddi, ddd, numero, usuario);
-
-            if (BaseDados.adicionarPessoa(usuario))
-                MensagemView.exibirMensagem(Mensagem.USUARIO_SUCESS);
-            else
-                MensagemView.exibirMensagem(Mensagem.USUARIO_ERROR);
+            BaseDados.adicionarPessoa(usuario);
         }
     }
     
