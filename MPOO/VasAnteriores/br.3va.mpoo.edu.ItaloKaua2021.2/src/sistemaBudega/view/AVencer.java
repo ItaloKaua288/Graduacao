@@ -25,7 +25,15 @@ public class AVencer extends JFrame{
         add(prazoLabel);
         add(prazoField);
         add(buscarButton);
-
-        setVisible(true);
     }
+
+    public JTextField getPrazoField() {
+        return prazoField;
+    }
+
+    public JButton getBuscarButton() {
+        return buscarButton;
+    }
+
+    
 }
