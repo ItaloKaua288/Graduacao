@@ -52,14 +52,13 @@ public class BaseDados implements AVencerInterface{
             if (diasAVencerProduto <= diasAVencer && diasAVencerProduto > 0)
                 produtosAVencer.add(currentProduto);
         }
-            
         return produtosAVencer;
     }
 
     public static ArrayList<Produto> buscarProdutosVencidos() {
         ArrayList<Produto> produtosVencidos = new ArrayList<Produto>();
 
-        for (Produto currentProduto : produtosVencidos)
+        for (Produto currentProduto : produtos)
             if (AVencerInterface.diasAVencer(currentProduto) <= 0)
                 produtosVencidos.add(currentProduto);
         return produtosVencidos;

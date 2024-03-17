@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 public class EstoqueView extends JFrame{
     private JLabel logoLabel;
@@ -18,6 +20,15 @@ public class EstoqueView extends JFrame{
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        try {
+            LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
+            for (LookAndFeelInfo lookAndFeel : looks)
+                if (lookAndFeel.getName().contains("Nimbus"))
+                    UIManager.setLookAndFeel(lookAndFeel.getClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         logoLabel = new JLabel(new ImageIcon("img//logoBudega.png"));
         verProdutosButton = new JButton("Ver Produtos");
         promocaButton = new JButton("Definir Promoção");

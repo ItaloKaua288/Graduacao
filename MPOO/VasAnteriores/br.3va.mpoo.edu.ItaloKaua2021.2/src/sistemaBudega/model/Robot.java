@@ -1,5 +1,6 @@
 package sistemaBudega.model;
 
+
 import sistemaBudega.view.MensagemView;
 
 public class Robot extends Thread{
@@ -8,7 +9,9 @@ public class Robot extends Thread{
     public static final long VERIFICACAO_DIAS = 86400000;
     public static final int PRAZO_DIAS = 2;
 
-    public Robot() {}
+    public Robot() {
+        start();
+    }
 
     public static void executarVerificarAVencer() {
         if (BaseDados.buscarProdutoAVencer(PRAZO_DIAS).size() > 0)
@@ -17,7 +20,7 @@ public class Robot extends Thread{
 
     public static void executarVencido() {
         if (BaseDados.buscarProdutosVencidos().size() > 0)
-            MensagemView.exibirMensagem("Existe(m) produto(s) vencido(S)");
+            MensagemView.exibirMensagem("Existe(m) produto(s) vencido(s)");
     }
 
     public void run() {

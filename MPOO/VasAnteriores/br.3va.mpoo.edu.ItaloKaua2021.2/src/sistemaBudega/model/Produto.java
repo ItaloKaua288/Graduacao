@@ -1,5 +1,6 @@
 package sistemaBudega.model;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -37,8 +38,10 @@ public class Produto implements VencidoInterface{
     }
 
     public boolean aplicarDesconto(double desconto) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        double valor = preco - preco*(desconto/100);
         if (desconto > 0) {
-            this.preco -= preco*desconto;
+            this.preco = Double.parseDouble(df.format(valor).replace(",", "."));
             return true;
         }
         return false;
@@ -96,7 +99,7 @@ public class Produto implements VencidoInterface{
     public String toString() {
         return "Produto [nome=" + nome + ", codBarras=" + codBarras + ", preco=" + preco + ", quantidade=" + quantidade
                 + ", validade=" + validade.getDate() + "/" + validade.getMonth() + "/" + validade.getYear() + ", estoque=" 
-                + estoque + ", fornecedor=" + fornecedor + "]";
+                + estoque + ", fornecedor=" + fornecedor + "]\n";
     }
     
 }

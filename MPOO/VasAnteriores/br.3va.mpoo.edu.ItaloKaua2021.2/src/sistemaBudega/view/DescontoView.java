@@ -22,7 +22,7 @@ public class DescontoView extends JFrame{
 
     public DescontoView() {
         super("Gerenciar Desconto");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setSize(190, 200);
         setResizable(false);
@@ -44,18 +44,20 @@ public class DescontoView extends JFrame{
         codBarrasLabel = new JLabel("Código Barras:");
         codBarrasField = new JTextField(5);
 
-        String[] dias = new String[100];
-        for (int i = 1; i < 100; i++)
-            dias[i] = i+"";
+        String[] dias = new String[999];
+        for (int i = 1; i <= 999; i++)
+            dias[i-1] = i+"";
         prazoLabel = new JLabel("Prazo (dias)");
         prazoLabel.setVisible(false);
         prazComboBox = new JComboBox<>(dias);
+        prazComboBox.setSelectedItem(0);
         prazComboBox.setVisible(false);
 
         descontoLabel = new JLabel("Desconto (%):");
         descontoField = new JTextField(3);
 
         aplicarButton = new JButton("Aplicar");
+        aplicarButton.setEnabled(false);
 
         add(tituloLabel);
         add(codBarrasRadioButton);
